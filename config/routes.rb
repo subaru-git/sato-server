@@ -4,7 +4,8 @@ Rails.application.routes.draw do
       mount_devise_token_auth_for 'User', at: 'auth', controllers: {
         registrations: 'api/v1/auth/registrations'
       }
-      get 'points', to: 'v1/points#members_only'
+      get 'points', to: 'v1/points#history'
+      post 'points/send', to: 'v1/points#send_point'
     end
   end
 end

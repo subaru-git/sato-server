@@ -6,4 +6,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
+
+  has_many :from_points, class_name: 'Point', foreign_key: 'from_id'
+  has_many :to_points, class_name: 'Point', foreign_key: 'to_id'
 end
