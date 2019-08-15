@@ -9,4 +9,5 @@ class User < ActiveRecord::Base
 
   has_many :from_points, class_name: 'Point', foreign_key: 'from_id'
   has_many :to_points, class_name: 'Point', foreign_key: 'to_id'
+  has_one :user_point
 end

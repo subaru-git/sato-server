@@ -14,6 +14,12 @@ module Api
       def send_point
         point = Point.new(from_id: current_api_user.id, to_id: params[:to], point: params[:point])
         point.save
+        userpoint = UserPoint.find_by(user_id: params[:to])
+        if userpoint.nil? then
+          userpoint = UserPoint.new(user_id: params[:to], point: 0)
+        end
+        userpoint.point += params[:point]
+        userpoint.save
         render json: {
           data: {
             message: "send #{params[:point]} points to #{params[:to]}"
@@ -37,6 +43,22 @@ module Api
           data: {
             history: history
           }, status: 200
+        }
+      end
+
+      def user_points
+        render json: {
+          data: {
+            points: UserPoint.all()
+          }, status: 200
+        }
+      end
+  
+      def users_point
+        render json: {
+          data: {
+            points: User.find_by(name: params[:user]).user_point.point
+          }
         }
       end
     end
