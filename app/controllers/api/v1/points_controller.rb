@@ -22,7 +22,17 @@ module Api
       end
 
       def history
-        history = User.find_by(name: params[:name]).from_points
+        history = []
+        case params[:rule]
+        when 'from' then
+          history = User.find_by(name: params[:name]).from_points
+        when 'to' then
+          history = User.find_by(name: params[:name]).to_points
+        when 'from-to' then
+          history = Point.find_by(from_id: current_api_user.id, to_id: current_api_user.id)
+        else
+          history = Point.all()
+        end
         render json: {
           data: {
             history: history

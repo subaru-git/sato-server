@@ -1,24 +1,49 @@
-# README
+# sato-server
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+"sato" visualizes each other's effort as a point.
+This is a server-side application.
 
-Things you may want to cover:
+## APIs
 
-* Ruby version
+This application provides API.
+The API usage is:
 
-* System dependencies
+```url
+http://your-host/api/v1/any-apis
+```
 
-* Configuration
+### authentication
 
-* Database creation
+Authentication using a token.
+References: [devise token auth](https://github.com/lynndylanhurley/devise_token_auth)
 
-* Database initialization
+- sign up
+- sign in
+- sign out
+- edit
+- password edit
+- password reset
 
-* How to run the test suite
+### points
 
-* Services (job queues, cache servers, search engines, etc.)
+- history
+  - all
+    - from-to
+  - user
+    - from-to
+    - from
+    - to
+- user
+  - points
+- send
 
-* Deployment instructions
+### users
 
-* ...
+- profile
+  - points
+    - from-to
+    - from
+    - to
+  - name
+  - mail
+  - image
